@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <h3 class="text-center text-primary">Create/Edit cover letter</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="alert alert-danger" role="alert" *ngIf="message">
+        {{message}}
+      </div>
+      
+      <div class="form-group">
+        <input type="number" 
+        class="form-control"  
+        placeholder="Id (number)"
+        formControlName="id"
+        [appDisableControl]="editableLetter? editableLetter.draft: true">
+      </div>
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="Profession"
+        formControlName="profession">
+      </div>
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="Name"
+        formControlName="name">
+      </div>
+
+      <div class="form-group">
+        <textarea
+         class="form-control"
+         placeholder="About"
+         formControlName="about">
+        </textarea>
+      </div> 
+
+
+      <div class="form-group">        
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"
+             formControlName="draft"              
+            >
+            Draft</label>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+</div>
