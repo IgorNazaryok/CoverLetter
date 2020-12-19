@@ -28,7 +28,7 @@ A cover letter creation form allows you to add and save a new letter to the appl
 ![Create](./image/save_letter_ID.png) <br>
 
 <br> 
-### [**Create book demo video**](https://youtu.be/BGVN-AxPVIA)
+
 
 - ### Edit cover letter
 To perform editing of previously saved cover letters, the form for creating a letter is used. Added a check to prohibit editing the id field for letters for which the draft flag is false. <br>
@@ -36,7 +36,7 @@ To perform editing of previously saved cover letters, the form for creating a le
 ![Edit](./image/Edit_true.png)<br>
 ![Edit](./image/Edit_true_CEO.png)<br>
 <br> 
-### [**Edit book demo video**](https://youtu.be/6E7cYWqadrE)
+
 <br> 
 
 - ### View viewing the saved list of letters
