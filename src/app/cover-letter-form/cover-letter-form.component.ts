@@ -24,7 +24,8 @@ coverLetters:CoverLetter
   ngOnChanges(changes:SimpleChanges): void { 
       
       changes.errorMessage &&!changes.errorMessage.firstChange && (!changes.errorMessage.currentValue.includes('There')) && this.form?  this.form.reset({ draft: true}) : null;
-      changes.errorMessage && changes.errorMessage.currentValue && changes.errorMessage.currentValue.includes('There')? this.message=changes.errorMessage.currentValue : null
+      changes.errorMessage && changes.errorMessage.currentValue && changes.errorMessage.currentValue.includes('There')?
+       this.message=changes.errorMessage.currentValue.slice(0, this.message=changes.errorMessage.currentValue.indexOf('!')+1): null
 
       changes.editableLetter && this.form?  this.form.reset({ draft: true}) : null;
   

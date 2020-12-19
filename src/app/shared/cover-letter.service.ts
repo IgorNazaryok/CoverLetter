@@ -49,7 +49,7 @@ export class CoverLetterService {
 
   isIncludesCoverLetter(coverLetter:CoverLetter):boolean
   {    
-    (!!this.coverLetters.find(letters=> letters.id===coverLetter.id))? this.errorMessage='There is already a record with this id!' : this.errorMessage= new Date().toString();
+    (!!this.coverLetters.find(letters=> letters.id===coverLetter.id))? this.errorMessage='There is already a record with this id!' + new Date().toString() : this.errorMessage= new Date().toString();
     
     return  !!this.coverLetters.find(letters=> letters.id===coverLetter.id);   
   }
