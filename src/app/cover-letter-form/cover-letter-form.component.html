@@ -2,7 +2,7 @@
   <h3 class="text-center text-primary">Create/Edit cover letter</h3>
     <form [formGroup]="form" (ngSubmit)="submit()">
 
-      <div class="alert alert-danger" role="alert" *ngIf="message">
+      <div class="error-message text-danger text-center" *ngIf="message">
         {{message}}
       </div>
       
