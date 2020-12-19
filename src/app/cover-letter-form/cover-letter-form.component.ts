@@ -21,21 +21,22 @@ coverLetters:CoverLetter
 
   constructor() { }
 
-  ngOnChanges(): void { 
-    
-    !this.message && this.form?  this.form.reset({ draft: true}) : null;
-    console.log('Message',!this.message);
-    console.log('this.form',!!this.form);  
+  ngOnChanges(changes:SimpleChanges): void { 
+      
+      changes.errorMessage &&!changes.errorMessage.firstChange && (!changes.errorMessage.currentValue.includes('There')) && this.form?  this.form.reset({ draft: true}) : null;
+      changes.errorMessage && changes.errorMessage.currentValue && changes.errorMessage.currentValue.includes('There')? this.message=changes.errorMessage.currentValue : null
 
-    this.form && this.editableLetter? this.form.setValue({    
-      id:this.editableLetter.id,
-      profession: this.editableLetter.profession,
-      name:this.editableLetter.name,
-      about:this.editableLetter.about,
-      draft:this.editableLetter.draft
-   })
-   : null
-  }
+      changes.editableLetter && this.form?  this.form.reset({ draft: true}) : null;
+  
+      this.form && changes.editableLetter && changes.editableLetter.currentValue? this.form.setValue({    
+        id:changes.editableLetter.currentValue.id,
+        profession: changes.editableLetter.currentValue.profession,
+        name:changes.editableLetter.currentValue.name,
+        about:changes.editableLetter.currentValue.about,
+        draft:changes.editableLetter.currentValue.draft
+     })
+     : null 
+    }
 
   ngOnInit(): void {
     this.form=new FormGroup({
@@ -51,7 +52,6 @@ coverLetters:CoverLetter
     
     if(this.editableLetter)
     {
-      console.log('Edit');
       const coverLetters:CoverLetter = {...this.form.value};
       this.onUpdate.emit(coverLetters);     
     }
@@ -61,6 +61,7 @@ coverLetters:CoverLetter
       { 
         const coverLetters:CoverLetter = {...this.form.value};
         this.onAdd.emit(coverLetters);
+        this.message =''
       } 
       else
       {
