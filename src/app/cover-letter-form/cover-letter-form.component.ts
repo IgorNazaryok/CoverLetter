@@ -7,7 +7,7 @@ import { CoverLetter } from '../shared/interface';
   templateUrl: './cover-letter-form.component.html',
   styleUrls: ['./cover-letter-form.component.scss']
 })
-export class CoverLetterFormComponent implements OnInit, OnChanges {
+export class CoverLetterFormComponent implements OnInit {
 
   form: FormGroup
   message: string
@@ -19,18 +19,6 @@ export class CoverLetterFormComponent implements OnInit, OnChanges {
 coverLetters:CoverLetter
 
   constructor() { }
-
-  ngOnChanges(changes:SimpleChanges): void { 
-    
-      this.form && changes.editableLetter && changes.editableLetter.currentValue? this.form.setValue({    
-        id:changes.editableLetter.currentValue.id,
-        profession: changes.editableLetter.currentValue.profession,
-        name:changes.editableLetter.currentValue.name,
-        about:changes.editableLetter.currentValue.about,
-        draft:changes.editableLetter.currentValue.draft
-     })
-     : null 
-    }
 
   ngOnInit(): void {
     this.form=new FormGroup({
@@ -64,8 +52,17 @@ coverLetters:CoverLetter
       }
     }
   }
-  reset(){
-    this.form.reset({ draft: true})
-    
+  resetForm(){
+    this.form.reset({ draft: true})    
+  }
+  
+  initializationForm (coverLetters:CoverLetter): void {
+    this.form.setValue({    
+      id:coverLetters.id,
+      profession: coverLetters.profession,
+      name:coverLetters.name,
+      about:coverLetters.about,
+      draft:coverLetters.draft
+   })
   }
 }

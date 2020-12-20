@@ -23,16 +23,17 @@ export class AppComponent  implements OnInit{
 
   addCoverLetters(coverLetter:CoverLetter){
     this.coverLetterService.addCoverLetter(coverLetter)? this.coverLetterFormComponent.message =  this.coverLetterService.addCoverLetter(coverLetter)
-    : this.coverLetterFormComponent.reset();
+    : this.coverLetterFormComponent.resetForm();
   }
   
   updateCoverLetters(coverLetter:CoverLetter){
     this.coverLetterService.updateCoverLetter(coverLetter)? this.coverLetterFormComponent.message =  this.coverLetterService.updateCoverLetter(coverLetter)
-    : this.coverLetterFormComponent.reset();    
+    : this.coverLetterFormComponent.resetForm();    
   }
 
   editCoverLetters(id:number){
     this.coverLetterFormComponent.message=null;
     this.coverLetterService.GetCoverLetterById(id);
+    this.coverLetterFormComponent.initializationForm(this.coverLetterService.editableLetter);
   }
 }
