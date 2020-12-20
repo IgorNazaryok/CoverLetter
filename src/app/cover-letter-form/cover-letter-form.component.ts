@@ -21,13 +21,11 @@ coverLetters:CoverLetter
 
   constructor() { }
 
-  ngOnChanges(changes:SimpleChanges): void { 
-      
-      changes.errorMessage &&!changes.errorMessage.firstChange && (!changes.errorMessage.currentValue.includes('There')) && this.form?  this.form.reset({ draft: true}) : null;
-      changes.errorMessage && changes.errorMessage.currentValue && changes.errorMessage.currentValue.includes('There')?
-       this.message=changes.errorMessage.currentValue.slice(0, this.message=changes.errorMessage.currentValue.indexOf('!')+1): null
+  ngOnChanges(changes:SimpleChanges): void {      
 
-      changes.editableLetter && this.form?  this.form.reset({ draft: true}) : null;
+      changes.errorMessage && changes.errorMessage.currentValue && changes.errorMessage.currentValue.includes('There')?
+        this.message=changes.errorMessage.currentValue.slice(0, this.message=changes.errorMessage.currentValue.indexOf('!')+1): null
+
   
       this.form && changes.editableLetter && changes.editableLetter.currentValue? this.form.setValue({    
         id:changes.editableLetter.currentValue.id,
@@ -69,5 +67,9 @@ coverLetters:CoverLetter
         this.message = 'Please fill in all fields correctly!';
       }
     }
+  }
+  reset(){
+    this.form.reset({ draft: true})
+    
   }
 }

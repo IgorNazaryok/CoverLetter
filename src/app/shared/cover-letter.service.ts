@@ -16,15 +16,18 @@ export class CoverLetterService {
   constructor() { }  
   
 
-  addCoverLetter(coverLetter:CoverLetter):void
+  addCoverLetter(coverLetter:CoverLetter):boolean
   {
+    let isAddCoverLetter:boolean=false;
     if (!this.isIncludesCoverLetter(coverLetter))
     {
     this.coverLetters.unshift(coverLetter);
     this.coverLetters.sort((a, b) => a.id > b.id ? 1 : -1);
     localStorage.listcoverLetters = JSON.stringify(this.coverLetters);
-    this.editableLetter=null;  
+    this.editableLetter=null;
+    isAddCoverLetter=true;  
     } 
+    return isAddCoverLetter;  
   }
 
   updateCoverLetter(coverLetter:CoverLetter):void
