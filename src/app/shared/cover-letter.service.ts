@@ -16,22 +16,19 @@ export class CoverLetterService {
   constructor() { }  
   
 
-  addCoverLetter(coverLetter:CoverLetter):boolean
-  {
-    let isAddCoverLetter:boolean=false;
+  addCoverLetter(coverLetter:CoverLetter):string
+  {    
     if (!this.isIncludesCoverLetter(coverLetter))
     {
     this.coverLetters.unshift(coverLetter);
     this.coverLetters.sort((a, b) => a.id > b.id ? 1 : -1);
     localStorage.listcoverLetters = JSON.stringify(this.coverLetters);
-    this.editableLetter=null;
-    isAddCoverLetter=true;  
+    this.editableLetter=null;    
     }
-
-    return isAddCoverLetter;  
+    return this.errorMessage;  
   }
 
-  updateCoverLetter(coverLetter:CoverLetter):boolean
+  updateCoverLetter(coverLetter:CoverLetter):string
   {
     if(coverLetter.id===this.editableLetter.id)
     {
@@ -40,7 +37,7 @@ export class CoverLetterService {
       this.coverLetters.sort((a, b) => a.id > b.id ? 1 : -1);
       localStorage.listcoverLetters = JSON.stringify(this.coverLetters);
       this.editableLetter=null;     
-      return true; 
+      return null; 
     }
     else 
     {
@@ -59,11 +56,11 @@ export class CoverLetterService {
    this.coverLetters.sort((a, b) => a.id > b.id ? 1 : -1);
   }
 
-  isIncludesCoverLetter(coverLetter:CoverLetter):boolean
+  isIncludesCoverLetter(coverLetter:CoverLetter):string
   {    
-    (!!this.coverLetters.find(letters=> letters.id===coverLetter.id))? this.errorMessage='There is already a record with this id!' + new Date().toString() : this.errorMessage= new Date().toString();
+    (!!this.coverLetters.find(letters=> letters.id===coverLetter.id))? this.errorMessage ='There is already a record with this id!' : this.errorMessage = null;
     
-    return  !!this.coverLetters.find(letters=> letters.id===coverLetter.id);   
+    return this.errorMessage
   }
 
 }

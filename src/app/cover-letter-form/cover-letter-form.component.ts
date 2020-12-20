@@ -15,18 +15,13 @@ export class CoverLetterFormComponent implements OnInit, OnChanges {
   @Output() onAdd: EventEmitter<CoverLetter> = new EventEmitter<CoverLetter>()
   @Output() onUpdate: EventEmitter<CoverLetter> = new EventEmitter<CoverLetter>()
   @Input()   editableLetter: CoverLetter
-  @Input()   errorMessage: string
 
 coverLetters:CoverLetter
 
   constructor() { }
 
-  ngOnChanges(changes:SimpleChanges): void {      
-
-      changes.errorMessage && changes.errorMessage.currentValue && changes.errorMessage.currentValue.includes('There')?
-        this.message=changes.errorMessage.currentValue.slice(0, this.message=changes.errorMessage.currentValue.indexOf('!')+1): null
-
-  
+  ngOnChanges(changes:SimpleChanges): void { 
+    
       this.form && changes.editableLetter && changes.editableLetter.currentValue? this.form.setValue({    
         id:changes.editableLetter.currentValue.id,
         profession: changes.editableLetter.currentValue.profession,
@@ -49,7 +44,7 @@ coverLetters:CoverLetter
 
   submit():void{
     
-    this.message=''
+    this.message=null
     
     if(!this.form.valid)
     {
@@ -66,7 +61,6 @@ coverLetters:CoverLetter
       {
         const coverLetters:CoverLetter = {...this.form.value};
         this.onAdd.emit(coverLetters);
-        this.message =''
       }
     }
   }

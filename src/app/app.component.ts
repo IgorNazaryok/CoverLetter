@@ -22,14 +22,17 @@ export class AppComponent  implements OnInit{
   }
 
   addCoverLetters(coverLetter:CoverLetter){
-    this.coverLetterService.addCoverLetter(coverLetter)? this.coverLetterFormComponent.reset() : null;
+    this.coverLetterService.addCoverLetter(coverLetter)? this.coverLetterFormComponent.message =  this.coverLetterService.addCoverLetter(coverLetter)
+    : this.coverLetterFormComponent.reset();
   }
+  
   updateCoverLetters(coverLetter:CoverLetter){
-    this.coverLetterService.updateCoverLetter(coverLetter)? this.coverLetterFormComponent.reset() : null;    
+    this.coverLetterService.updateCoverLetter(coverLetter)? this.coverLetterFormComponent.message =  this.coverLetterService.updateCoverLetter(coverLetter)
+    : this.coverLetterFormComponent.reset();    
   }
 
   editCoverLetters(id:number){
-    this.coverLetterFormComponent.message='';
+    this.coverLetterFormComponent.message=null;
     this.coverLetterService.GetCoverLetterById(id);
   }
 }
