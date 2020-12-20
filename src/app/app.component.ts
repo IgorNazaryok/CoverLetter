@@ -22,11 +22,10 @@ export class AppComponent  implements OnInit{
   }
 
   addCoverLetters(coverLetter:CoverLetter){
-    this.coverLetterService.addCoverLetter(coverLetter)? this.coverLetterFormComponent.reset() :null;
+    this.coverLetterService.addCoverLetter(coverLetter)? this.coverLetterFormComponent.reset() : null;
   }
   updateCoverLetters(coverLetter:CoverLetter){
-    this.coverLetterService.updateCoverLetter(coverLetter);
-    this.coverLetterFormComponent.reset();
+    this.coverLetterService.updateCoverLetter(coverLetter)? this.coverLetterFormComponent.reset() : null;    
   }
 
   editCoverLetters(id:number){

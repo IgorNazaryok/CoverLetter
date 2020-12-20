@@ -27,16 +27,26 @@ export class CoverLetterService {
     this.editableLetter=null;
     isAddCoverLetter=true;  
     } 
+    console.log('addCover', isAddCoverLetter);  
     return isAddCoverLetter;  
   }
 
-  updateCoverLetter(coverLetter:CoverLetter):void
+  updateCoverLetter(coverLetter:CoverLetter):boolean
   {
-    this.coverLetters=this.coverLetters.filter(letters=> letters.id!==coverLetter.id);
-    this.coverLetters.unshift(coverLetter);
-    this.coverLetters.sort((a, b) => a.id > b.id ? 1 : -1);
-    localStorage.listcoverLetters = JSON.stringify(this.coverLetters);
-    this.editableLetter=null;
+    if(coverLetter.id===this.editableLetter.id)
+    {
+      this.coverLetters=this.coverLetters.filter(letters=> letters.id!==coverLetter.id);
+      this.coverLetters.unshift(coverLetter);
+      this.coverLetters.sort((a, b) => a.id > b.id ? 1 : -1);
+      localStorage.listcoverLetters = JSON.stringify(this.coverLetters);
+      this.editableLetter=null;   
+      console.log('update true');        
+      return true; 
+    }
+    else 
+    {
+      return this.addCoverLetter(coverLetter);
+    }
   }
 
   GetCoverLetterById(id:number):void

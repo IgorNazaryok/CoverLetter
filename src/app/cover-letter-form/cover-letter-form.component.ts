@@ -51,22 +51,22 @@ coverLetters:CoverLetter
     
     this.message=''
     
-    if(this.editableLetter)
+    if(!this.form.valid)
     {
-      const coverLetters:CoverLetter = {...this.form.value};
-      this.onUpdate.emit(coverLetters);     
+      this.message = 'Please fill in all fields correctly!';    
     }
     else
     {
-      if(this.form.valid)
+      if(this.editableLetter)
       { 
         const coverLetters:CoverLetter = {...this.form.value};
-        this.onAdd.emit(coverLetters);
-        this.message =''
+        this.onUpdate.emit(coverLetters); 
       } 
       else
       {
-        this.message = 'Please fill in all fields correctly!';
+        const coverLetters:CoverLetter = {...this.form.value};
+        this.onAdd.emit(coverLetters);
+        this.message =''
       }
     }
   }
