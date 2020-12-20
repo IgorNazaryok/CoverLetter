@@ -47,7 +47,9 @@ coverLetters:CoverLetter
     }) 
   }
 
-  submit():void{   
+  submit():void{
+    
+    this.message=''
     
     if(this.editableLetter)
     {

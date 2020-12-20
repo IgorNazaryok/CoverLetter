@@ -30,6 +30,7 @@ export class AppComponent  implements OnInit{
   }
 
   editCoverLetters(id:number){
+    this.coverLetterFormComponent.message='';
     this.coverLetterService.GetCoverLetterById(id);
   }
 }
