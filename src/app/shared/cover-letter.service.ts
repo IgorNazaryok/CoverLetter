@@ -26,8 +26,8 @@ export class CoverLetterService {
     localStorage.listcoverLetters = JSON.stringify(this.coverLetters);
     this.editableLetter=null;
     isAddCoverLetter=true;  
-    } 
-    console.log('addCover', isAddCoverLetter);  
+    }
+
     return isAddCoverLetter;  
   }
 
@@ -39,8 +39,7 @@ export class CoverLetterService {
       this.coverLetters.unshift(coverLetter);
       this.coverLetters.sort((a, b) => a.id > b.id ? 1 : -1);
       localStorage.listcoverLetters = JSON.stringify(this.coverLetters);
-      this.editableLetter=null;   
-      console.log('update true');        
+      this.editableLetter=null;     
       return true; 
     }
     else 
