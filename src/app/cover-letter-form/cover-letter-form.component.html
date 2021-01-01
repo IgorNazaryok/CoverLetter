@@ -8,15 +8,17 @@
       
       <div class="form-group">
         <input type="number" 
-        class="form-control"  
+        class="form-control"
+        [ngClass]="{'is-invalid':id.dirty && id.invalid && id.touched}"  
         placeholder="Id (number)"
         formControlName="id"
-        [appDisableControl]="editableLetter? editableLetter.draft: true">
+        [readonly]="editableLetter? !editableLetter.draft: false">
       </div>
 
       <div class="form-group">
         <input type="text"
         class="form-control"
+        [ngClass]="{'is-invalid':profession.dirty && profession.invalid && profession.touched}"
         placeholder="Profession"
         formControlName="profession">
       </div>
@@ -24,6 +26,7 @@
       <div class="form-group">
         <input type="text"
         class="form-control"
+        [ngClass]="{'is-invalid':name.dirty && name.invalid && name.touched}"
         placeholder="Name"
         formControlName="name">
       </div>
@@ -31,6 +34,7 @@
       <div class="form-group">
         <textarea
          class="form-control"
+         [ngClass]="{'is-invalid':about.dirty && about.invalid && about.touched}"
          placeholder="About"
          formControlName="about">
         </textarea>

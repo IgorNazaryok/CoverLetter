@@ -10,6 +10,13 @@ import { CoverLetter } from '../shared/interface';
 export class CoverLetterFormComponent implements OnInit {
 
   form: FormGroup
+
+  id: FormControl
+  profession: FormControl
+  name: FormControl
+  about: FormControl
+  draft: FormControl
+
   message: string
 
   @Output() onAdd: EventEmitter<CoverLetter> = new EventEmitter<CoverLetter>()
@@ -21,12 +28,25 @@ coverLetters:CoverLetter
   constructor() { }
 
   ngOnInit(): void {
+    this.createForm()
+  }
+
+  createFormControls(){
+    this.id = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]),
+    this.profession = new FormControl('', Validators.required),
+    this.name = new FormControl('', Validators.required),
+    this.about = new FormControl('', Validators.required),
+    this.draft = new FormControl(true)    
+  }
+
+  createForm(){
+    this.createFormControls()
     this.form=new FormGroup({
-      id:new FormControl('', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]),
-      profession: new FormControl('', Validators.required),
-      name:new FormControl('', Validators.required),
-      about:new FormControl('', Validators.required),
-      draft:new FormControl(true)
+      id: this.id,
+      profession: this.profession,
+      name: this.name,
+      about: this.about,
+      draft: this.draft
     }) 
   }
 
